@@ -1,4 +1,4 @@
-FROM docker.io/nforceroh/k8s-alpine-baseimage:latest
+FROM ghcr.io/nforceroh/k8s-alpine-baseimage:latest
 
 ARG \
   BUILD_DATE=now \
