@@ -10,6 +10,10 @@ on:
 jobs:
   deploy-docker-image:
     runs-on: arc-k8s-razor
+    container:
+      # Runner docker image
+      image: ubuntu:22.04
+     
     steps:
       - name: Get repo name
         run: |
