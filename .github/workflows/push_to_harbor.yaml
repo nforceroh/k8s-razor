@@ -25,10 +25,10 @@ jobs:
       - name: Set build date
         id: date
         run: echo "builddate={$(date +'%Y%m%d%H%M%S')}" >> $GITHUB_ENV
-      - name: copy cert to docker
-        run: |
-          sudo mkdir -p /etc/docker/certs.d/harbor.nf.lab
-          sudo cp /usr/local/share/ca-certificates/nf_lab_root_ca.crt /etc/docker/certs.d/harbor.nf.lab/ca.crt
+#      - name: copy cert to docker
+#        run: |
+#          sudo mkdir -p /etc/docker/certs.d/harbor.nf.lab
+#          sudo cp /usr/local/share/ca-certificates/nf_lab_root_ca.crt /etc/docker/certs.d/harbor.nf.lab/ca.crt
 
       - run: echo "Prep login to ${{ secrets.HARBOR_USERNAME}}:${{ secrets.HARBOR_PASSWORD }}@harbor.nf.lab."
 
