@@ -32,6 +32,11 @@ jobs:
 
       - run: echo "Prep login to ${{ secrets.HARBOR_USERNAME}}:${{ secrets.HARBOR_PASSWORD }}@harbor.nf.lab."
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver: docker-container
+
       - name: Login to image repository
         uses: docker/login-action@v3
         with:
