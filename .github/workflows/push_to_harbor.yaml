@@ -42,7 +42,7 @@ jobs:
 
       - name: curl harbor
         run: |
-          curl -vs https://harbor.nf.lab --cacert  /usr/local/share/ca-certificates/nf_lab_root_ca.crt
+          curl -vs https://harbor.nf.lab
 
       - run: echo "Prep login to ${{ secrets.HARBOR_USERNAME}}:${{ secrets.HARBOR_PASSWORD }}@harbor.nf.lab."
 
