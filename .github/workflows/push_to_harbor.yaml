@@ -28,8 +28,12 @@ jobs:
 
       - name: Add Harbor registry CA certificate
         run: |
-          sudo ls -la /usr/local/share/ca-certificates
+          sudo ls -la /usr/local/share/ca-certificates /etc/ssl/certs
           sudo update-ca-certificates -v
+      - name: check cert
+        run: |
+          echo | openssl s_client -showcerts -connect harbor.nf.lab:443
+
       - run: echo "Prep login to ${{ secrets.HARBOR_USERNAME}}:${{ secrets.HARBOR_PASSWORD }}@harbor.nf.lab."
 
       - name: Login to image repository
