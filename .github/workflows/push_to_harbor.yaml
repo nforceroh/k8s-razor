@@ -28,7 +28,12 @@ jobs:
 
       - name: update certificate
         run: |
-          sudo update-ca-certificates -v
+          sudo update-ca-certificates
+
+      - name: restart docker
+        run: |
+          sudo systemctl restart docker
+      
       - name: check cert
         run: |
           echo | openssl s_client -showcerts -connect harbor.nf.lab:443
