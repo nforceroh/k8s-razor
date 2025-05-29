@@ -24,7 +24,7 @@ jobs:
 
       - name: Set build date
         id: date
-        run: echo "::set-output name=builddate::$(date +'%Y%m%d%H%M%S')"
+        run: echo "builddate={$(date +'%Y%m%d%H%M%S')}" >> $GITHUB_ENV
 
 #      - name: Add Harbor registry CA certificate
 #        run: |
@@ -44,8 +44,8 @@ jobs:
         with:
           push: true
           tags: |
-            ${{ secrets.HARBOR_URL }}/${{ env.HARBOR_PROJECT }}/${{ env.IMGNAME }}:${{ steps.date.outputs.builddate }}
+            ${{ secrets.HARBOR_URL }}/${{ env.HARBOR_PROJECT }}/${{ env.IMGNAME }}:${{ env.builddate }}
             ${{ secrets.HARBOR_URL }}/${{ env.HARBOR_PROJECT }}/${{ env.IMGNAME }}:latest
           build-args: |
-            BUILD_DATE=${{ steps.date.outputs.builddate }}
-            VERSION=${{ steps.date.outputs.builddate }}
+            BUILD_DATE=${{ env.builddate }}
+            VERSION=${{ env.builddate }}
