@@ -37,7 +37,8 @@ jobs:
 
       - name: update certificate
         run: |
-          ls -la /usr/local/share/ca-certificates/ca.crt /etc/docker/certs.d/harbor.nf.lab:443/ca.crt
+          ls -la /usr/local/share/ca-certificates/ca.crt 
+          ls -la /etc/docker/certs.d/harbor.nf.lab:443/ca.crt
 
 
       - run: echo "Prep login to ${{ secrets.HARBOR_USERNAME}}:${{ secrets.HARBOR_PASSWORD }}@harbor.nf.lab."
