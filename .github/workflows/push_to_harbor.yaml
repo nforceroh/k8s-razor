@@ -40,6 +40,9 @@ jobs:
           ls -la /usr/local/share/ca-certificates
           ls -la /etc/docker/certs.d/harbor.nf.lab:443
 
+      - name: curl harbor
+        run: |
+          curl -vs https://harbor.nf.lab --cacert  /usr/local/share/ca-certificates/nf_lab_intermediate_ca.crt
 
       - run: echo "Prep login to ${{ secrets.HARBOR_USERNAME}}:${{ secrets.HARBOR_PASSWORD }}@harbor.nf.lab."
 
