@@ -26,9 +26,8 @@ jobs:
         id: date
         run: echo "builddate={$(date +'%Y%m%d%H%M%S')}" >> $GITHUB_ENV
 
-      - name: Add Harbor registry CA certificate
+      - name: update certificate
         run: |
-          sudo ls -la /usr/local/share/ca-certificates /etc/ssl/certs
           sudo update-ca-certificates -v
       - name: check cert
         run: |
