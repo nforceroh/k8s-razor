@@ -25,30 +25,12 @@ jobs:
       - name: Set build date
         id: date
         run: echo "builddate={$(date +'%Y%m%d%H%M%S')}" >> $GITHUB_ENV
-
-      - name: update certificate
-        run: |
-          sudo update-ca-certificates
-
       - name: copy cert to docker
         run: |
           sudo mkdir -p /etc/docker/certs.d/harbor.nf.lab:443
           sudo cp /usr/local/share/ca-certificates/nf_lab_root_ca.crt /etc/docker/certs.d/harbor.nf.lab:443/ca.crt
 
-      - name: update certificate
-        run: |
-          ls -la /usr/local/share/ca-certificates
-          ls -laRt /etc/docker/certs.d
-
-      - name: curl harbor
-        run: |
-          curl -vs https://harbor.nf.lab
-
       - run: echo "Prep login to ${{ secrets.HARBOR_USERNAME}}:${{ secrets.HARBOR_PASSWORD }}@harbor.nf.lab."
-
-      - name: Setup docker context for buildx
-        id: buildx-context
-        run: docker context create builders || docker context use builders
 
       - name: Login to image repository
         uses: docker/login-action@v3
