@@ -1,9 +1,11 @@
-#!/bin/bash
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
 
-printf "
+echo "
 ───────────────────────────────────────
-RAZORFY_DEBUG      = ${RAZORFY_DEBUG}
-RAZORFY_BINDPORT   = ${RAZORFY_BINDPORT}
-RAZORFY_MAXTHREADS = ${RAZORFY_MAXTHREADS}
+RAZORFY_DEBUG       = $RAZORFY_DEBUG
+RAZORFY_BINDADDRESS = $RAZORFY_BINDADDRESS
+RAZORFY_BINDPORT    = $RAZORFY_BINDPORT
+RAZORFY_MAXTHREADS  = $RAZORFY_MAXTHREADS
 ───────────────────────────────────────
 "

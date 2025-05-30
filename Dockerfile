@@ -16,12 +16,16 @@ ENV \
 ### Install Dependencies
 RUN apk upgrade --no-cache \
   && apk add --no-cache razor perl-io-socket-ip \
+  && addgroup razor 2>/dev/null \
+  && adduser -D --gecos "razor antispam" --ingroup razor razor 2>/dev/null \
+  && mkdir /home/razor/.razor && chown razor:razor /home/razor/.razor \
   && rm -rf /var/cache/apk/* /usr/src/*
 
 ### Add Files
-ADD --chmod=755 /etc/s6-overlay /etc/s6-overlay
-ADD --chmod=755 razorfy/razorfy.pl /app/razorfy.pl
-ADD --chmod=644 razorfy/razorfy.conf /etc/razorfy.conf
+ADD --chmod=755 /content/etc/s6-overlay /etc/s6-overlay
+ADD --chown=razor:razor --chmod=755 /content/razorfy/razorfy.pl /home/razor/razorfy.pl
+ADD --chown=razor:razor --chmod=644 /content/razorfy/razorfy.conf /home/razor/razorfy.conf
+ADD --chown=razor:razor --chmod=644 /content/razorfy/razor-agent.conf /home/razor/.razor/razorfy-agent.conf
 
 EXPOSE 11342
 

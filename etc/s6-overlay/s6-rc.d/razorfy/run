@@ -1,3 +1,0 @@
-#!/command/execlineb -P
-s6-setuidgid abc
-/app/razorfy.pl
