@@ -19,9 +19,9 @@ RUN apk upgrade --no-cache \
   && rm -rf /var/cache/apk/* /usr/src/*
 
 ### Add Files
-COPY --chown=abc:abc --chmod=755 razorfy/razorfy.pl /app/razorfy.pl
-COPY --chown=abc:abc --chmod=644 razorfy/razorfy.conf /etc/razorfy.conf
-COPY --chmod=755 /etc/s6-overlay /etc/s6-overlay
+ADD --chown=abc --chmod=755 razorfy/razorfy.pl /app/razorfy.pl
+ADD --chown=abc --chmod=644 razorfy/razorfy.conf /etc/razorfy.conf
+ADD --chmod=755 /etc/s6-overlay /etc/s6-overlay
 
 EXPOSE 11342
 
