@@ -8,9 +8,9 @@ LABEL \
   maintainer="Sylvain Martin (sylvain@nforcer.com)"
 
 ENV \
-  RAZORFY_DEBUG=0 \
-  RAZORFY_MAXTHREADS=200 \
-  RAZORFY_BINDADDRESS=127.0.0.1 \
+  RAZORFY_DEBUG=1 \
+  RAZORFY_MAXTHREADS=50 \
+  RAZORFY_BINDADDRESS=0.0.0.0 \
   RAZORFY_BINDPORT=11342 
 
 ### Install Dependencies
@@ -19,15 +19,11 @@ RUN apk upgrade --no-cache \
   && rm -rf /var/cache/apk/* /usr/src/*
 
 ### Add Files
-ADD rootfs /
-ADD https://raw.githubusercontent.com/HeinleinSupport/razorfy/refs/heads/master/razorfy.pl /app/razorfy.pl
-ADD https://raw.githubusercontent.com/HeinleinSupport/razorfy/refs/heads/master/razorfy.conf /app/razorfy.conf
+ADD --chown=abc:abc --chmod=755 https://raw.githubusercontent.com/HeinleinSupport/razorfy/refs/heads/master/razorfy.pl /app/razorfy.pl
+ADD --chown=abc:abc --chmod=644 https://raw.githubusercontent.com/HeinleinSupport/razorfy/refs/heads/master/razorfy.conf /etc/razorfy.conf
 
 
-RUN find /etc/s6-overlay/s6-rc.d -name run -exec chmod 755 {} \; \
-  && chmod 755 /etc/cont-init.d/* \
-  && chmod 755 /app/razorfy.pl \
-  && chmod 644 /app/razorfy.conf
+COPY --chmod=755 /etc/s6-overlay /etc/s6-overlay
 
 EXPOSE 11342
 
