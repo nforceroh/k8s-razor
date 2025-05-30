@@ -1,6 +1,6 @@
-#!/command/with-contenv
+#!/command/with-contenv bash
 
-echo "
+printf "
 ───────────────────────────────────────
 RAZORFY_DEBUG      = ${RAZORFY_DEBUG}
 RAZORFY_BINDPORT   = ${RAZORFY_BINDPORT}
